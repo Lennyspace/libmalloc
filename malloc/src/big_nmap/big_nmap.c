@@ -30,4 +30,5 @@ void init_big_nmap(struct big_nmap *big_nmap, size_t taille_mmap,
     big_nmap->next = NULL;
     big_nmap->size_page = taille_mmap;
     big_nmap->data_adress = page_base + sizeof(struct big_nmap);
+    big_nmap->size_demande = 1;
 }

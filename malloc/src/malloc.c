@@ -234,7 +234,7 @@ __attribute__((visibility("default"))) void *calloc(size_t nmemb, size_t size)
     {
         return NULL;
     }
-    void *ptr = malloc(size);
+    void *ptr = malloc(total_size);
     if (ptr == NULL)
     {
         return NULL;

@@ -11,6 +11,7 @@ struct big_nmap
     struct big_nmap *next;
     unsigned char *data_adress; // pointeur retourner a l utilisateur
     size_t size_page; // taille map en octets (multiple de 4096)
+    size_t size_demande;
 };
 
 void remove_bignmap(struct list_big_nmap *list_b, struct big_nmap *);
