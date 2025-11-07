@@ -12,7 +12,7 @@ libmalloc.so: $(OBJS)
 	gcc $(LDFLAGS) -o libmalloc.so $(OBJS)
 
 check:
-	echo checking.....
+	./tests/tests.sh
 
 clean:
 	$(RM) $(OBJS) libmalloc.so

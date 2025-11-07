@@ -21,7 +21,7 @@ struct bucket
         flags[32]; // 4096/16 256 case -> 256bits ->32octer ->32 unsigned char
     unsigned char *data_start;
 };
-void list_bucket_remove(struct list_bucket *list_b, size_t index);
+void list_bucket_remove(struct list_bucket *list_b, struct bucket *bucket);
 
 void list_bucket_append(struct list_bucket *list_b, struct bucket *bucket);
 void init_bucket(struct bucket *bucket, unsigned char *page_base,

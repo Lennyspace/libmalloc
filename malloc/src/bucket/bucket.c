@@ -50,33 +50,25 @@ void list_bucket_append(struct list_bucket *list_b, struct bucket *bucket)
     bucket->prev = cur;
 }
 
-void list_bucket_remove(struct list_bucket *list_b, size_t index)
+void list_bucket_remove(struct list_bucket *list_b, struct bucket *bucket)
 { // ne ke free pas/ on  considere index valide
-    if (list_b->head->next == NULL)
+    if (bucket == list_b->head)
     {
-        list_b->head = NULL;
+        list_b->head = bucket->next;
+        if (list_b->head)
+        {
+            list_b->head->prev = NULL;
+        }
         return;
     }
-    struct bucket *cur = list_b->head;
-    size_t i = 0;
-    while (i < index)
+    if (bucket->prev)
     {
-        cur = cur->next;
-        i++;
+        bucket->prev->next = bucket->next;
     }
-    if (cur->next == NULL)
+    if (bucket->next)
     {
-        cur->prev->next = NULL;
-        return;
+        bucket->next->prev = bucket->prev;
     }
-    if (cur->prev == NULL)
-    {
-        cur->next->prev = NULL;
-        list_b->head = cur->next;
-        return;
-    }
-    cur->next->prev = cur->prev;
-    cur->prev->next = cur->next;
 }
 
 int find_free_block(struct bucket *bucket)

@@ -140,7 +140,7 @@ static void remove_and_unmap_bucket(struct bucket *bucket)
     }
 
     struct list_bucket *list_b = &Global.list_bucket[list_index];
-    list_bucket_remove(list_b, list_index);
+    list_bucket_remove(list_b, bucket);
     munmap(bucket, 4096);
 }
 
@@ -179,6 +179,10 @@ __attribute__((visibility("default"))) void free(void *ptr)
         return;
     }
     struct bucket *bucket = find_bucket_for_ptr(ptr);
+    if (bucket == NULL)
+    {
+        return;
+    }
     free_block_in_bucket(bucket, ptr);
     if (bucket->nb_block_free == bucket->nb_block)
     {
@@ -191,7 +195,7 @@ __attribute__((visibility("default"))) void *realloc(void *ptr, size_t size)
 {
     if (ptr == NULL)
     {
-        return NULL;
+        return malloc(size);
     }
     if (size == 0)
     {

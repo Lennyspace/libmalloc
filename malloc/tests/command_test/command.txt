@@ -1,0 +1,8 @@
+ls
+ls -la
+tar -cf malloc.tar libmalloc.so
+find . -type f -name 'malloc.c'
+tree
+od libmalloc.so
+git status
+less Makefile
