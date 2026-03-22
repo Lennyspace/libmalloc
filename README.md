@@ -6,16 +6,16 @@ A drop-in replacement for the standard C memory allocator, built in C99. Impleme
 
 Two allocation strategies depending on request size:
 
-- **Bucket allocator** — small/medium allocations are served from fixed-size buckets grouped by size class. Reduces fragmentation and speeds up allocation for common sizes.
-- **mmap allocator** — large allocations are handled directly with `mmap` / `munmap`, bypassing the bucket system.
+- **Bucket allocator** - small/medium allocations are served from fixed-size buckets grouped by size class. Reduces fragmentation and speeds up allocation for common sizes.
+- **mmap allocator** - large allocations are handled directly with `mmap` / `munmap`, bypassing the bucket system.
 
 ## Architecture
 
 ```
 src/
-├── malloc.c             # malloc / free / realloc / calloc
-├── bucket/              # Bucket-based allocator
-└── big_nmap/            # Large allocation via mmap
+|-- malloc.c             # malloc / free / realloc / calloc
+|-- bucket/              # Bucket-based allocator
+`-- big_nmap/            # Large allocation via mmap
 ```
 
 ## Build
@@ -44,4 +44,4 @@ Tests cover allocation correctness, memory reuse, heap corruption detection, and
 
 ---
 
-EPITA — Systems programming (ING1)
+EPITA - Systems programming (ING1)
